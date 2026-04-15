@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <PackageId>BrighterTools.ApiKeys.AspNetCore</PackageId>
+    <Title>BrighterTools.ApiKeys.AspNetCore</Title>
+    <RootNamespace>BrighterTools.ApiKeys.AspNetCore</RootNamespace>
+    <Description>ASP.NET Core authentication handlers and registration helpers for BrighterTools.ApiKeys.</Description>
+    <PackageTags>api-keys;authentication;aspnetcore;security</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BrighterTools.ApiKeys\BrighterTools.ApiKeys.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+</Project>
