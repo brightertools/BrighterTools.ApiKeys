@@ -14,6 +14,10 @@ public sealed class ApiKeyOptions
     /// </summary>
     public string ClientHeaderName { get; set; } = ApiKeyDefaults.ClientHeaderName;
     /// <summary>
+    /// Gets or sets a value indicating whether client API keys are enabled for this application.
+    /// </summary>
+    public bool ClientKeysEnabled { get; set; } = true;
+    /// <summary>
     /// Gets or sets the Server Key Header Name.
     /// </summary>
     public string ServerKeyHeaderName { get; set; } = ApiKeyDefaults.ServerKeyHeaderName;

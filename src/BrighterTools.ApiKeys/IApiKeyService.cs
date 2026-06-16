@@ -81,6 +81,13 @@ public interface IApiKeyService
     /// <returns>A task that represents the asynchronous operation and contains the operation result.</returns>
     Task<ApiKeyAuthenticationResult?> AuthenticateClientKeyAsync(string plainApiKey, CancellationToken ct = default);
     /// <summary>
+    /// Authenticates a no-secret server key.
+    /// </summary>
+    /// <param name="plainApiKey">The plainApiKey value.</param>
+    /// <param name="ct">The ct value.</param>
+    /// <returns>A task that represents the asynchronous operation and contains the operation result.</returns>
+    Task<ApiKeyAuthenticationResult?> AuthenticateServerKeyAsync(string plainApiKey, CancellationToken ct = default);
+    /// <summary>
     /// Authenticates the authenticate Server Key Async.
     /// </summary>
     /// <param name="plainApiKey">The plainApiKey value.</param>
@@ -89,4 +96,6 @@ public interface IApiKeyService
     /// <returns>A task that represents the asynchronous operation and contains the operation result.</returns>
     Task<ApiKeyAuthenticationResult?> AuthenticateServerKeyAsync(string plainApiKey, string plainSecret, CancellationToken ct = default);
 }
+
+
 

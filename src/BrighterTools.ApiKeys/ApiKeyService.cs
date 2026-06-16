@@ -120,8 +120,7 @@ public sealed class ApiKeyService : IApiKeyService
 
         var record = candidates.FirstOrDefault(x =>
             x.SecurityLevel == ApiKeySecurityLevel.Client &&
-            x.Status == ApiKeyStatus.Active &&
-            (x.ExpiryDate == null || x.ExpiryDate > now) &&
+            IsAuthenticatable(x, now) &&
             CryptographicOperations.FixedTimeEquals(x.KeyHash, incomingHash));
 
         if (record == null)
@@ -137,6 +136,37 @@ public sealed class ApiKeyService : IApiKeyService
     /// <summary>
     /// Authenticates Server Key.
     /// </summary>
+    /// <summary>
+    /// Authenticates no-secret Server Key.
+    /// </summary>
+    public async Task<ApiKeyAuthenticationResult?> AuthenticateServerKeyAsync(string plainApiKey, CancellationToken ct = default)
+    {
+        if (string.IsNullOrWhiteSpace(plainApiKey))
+        {
+            return null;
+        }
+
+        var previewLength = Math.Max(1, _options.ServerKeyPreviewLength);
+        var preview = plainApiKey.Length > previewLength ? plainApiKey[..previewLength] : plainApiKey;
+        var incomingKeyHash = ApiKeyGenerator.Hash(plainApiKey, _pepper);
+        var now = DateTimeOffset.UtcNow;
+        var candidates = await _store.FindByPreviewAsync(preview, ct);
+
+        var record = candidates.FirstOrDefault(x =>
+            x.SecurityLevel != ApiKeySecurityLevel.Client &&
+            x.SecretHash == null &&
+            IsAuthenticatable(x, now) &&
+            CryptographicOperations.FixedTimeEquals(x.KeyHash, incomingKeyHash));
+
+        if (record == null)
+        {
+            return null;
+        }
+
+        var result = ToAuthenticationResult(record, usesSecret: false);
+        await _usageTracker.TrackSuccessfulUseAsync(result, ct);
+        return result;
+    }
     public async Task<ApiKeyAuthenticationResult?> AuthenticateServerKeyAsync(string plainApiKey, string plainSecret, CancellationToken ct = default)
     {
         if (string.IsNullOrWhiteSpace(plainApiKey) || string.IsNullOrWhiteSpace(plainSecret))
@@ -154,8 +184,7 @@ public sealed class ApiKeyService : IApiKeyService
         var record = candidates.FirstOrDefault(x =>
             x.SecurityLevel != ApiKeySecurityLevel.Client &&
             x.SecretHash != null &&
-            x.Status == ApiKeyStatus.Active &&
-            (x.ExpiryDate == null || x.ExpiryDate > now) &&
+            IsAuthenticatable(x, now) &&
             CryptographicOperations.FixedTimeEquals(x.KeyHash, incomingKeyHash) &&
             CryptographicOperations.FixedTimeEquals(x.SecretHash, incomingSecretHash));
 
@@ -214,6 +243,11 @@ public sealed class ApiKeyService : IApiKeyService
         };
     }
 
+    private static bool IsAuthenticatable(ApiKeyRecord record, DateTimeOffset now)
+    {
+        var statusAllowsUse = record.Status == ApiKeyStatus.Active || record.Status == ApiKeyStatus.Retiring;
+        return statusAllowsUse && (record.ExpiryDate == null || record.ExpiryDate > now);
+    }
     private async Task<ApiKeyPlainResult> WithCurrentOwnerAsync(Func<ApiKeyOwner, Task<ApiKeyPlainResult>> action, CancellationToken ct)
     {
         var owner = await _ownerContext.GetCurrentOwnerAsync(ct) ?? throw new InvalidOperationException("No current API key owner is available.");
@@ -253,5 +287,7 @@ public sealed class ApiKeyService : IApiKeyService
         return (plain, ApiKeyGenerator.Hash(plain, _pepper));
     }
 }
+
+
 
 

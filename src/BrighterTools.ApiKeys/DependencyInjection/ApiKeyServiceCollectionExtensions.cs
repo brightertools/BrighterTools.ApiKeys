@@ -25,7 +25,9 @@ public static class ApiKeyServiceCollectionExtensions
         services.TryAddEnumerable(ServiceDescriptor.Singleton<IValidateOptions<ApiKeyOptions>, ApiKeyOptionsValidator>());
         services.TryAddScoped<IApiKeyUsageTracker, NoopApiKeyUsageTracker>();
         services.TryAddScoped<IApiKeyService, ApiKeyService>();
+        services.TryAddScoped<IApiKeyOrchestrator, ApiKeyOrchestrator>();
         return services;
     }
 }
+
 
