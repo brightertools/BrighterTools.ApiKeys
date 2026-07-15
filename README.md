@@ -1,8 +1,8 @@
-﻿# BrighterTools.ApiKeys
+# BrighterTools.ApiKeys
 
 `BrighterTools.ApiKeys` provides reusable API key generation, hashing, rotation, storage abstractions, and authentication orchestration for .NET applications.
 
-`BrighterTools.ApiKeys.AspNetCore` adds ASP.NET Core authentication handlers and registration helpers. `brightertools-api-keys-react` adds adapter-first React management UI and localization helpers.
+`BrighterTools.ApiKeys.AspNetCore` adds ASP.NET Core authentication handlers and registration helpers. `@brightertools/api-keys-react` adds adapter-first React management UI and localization helpers.
 
 The host application owns persistence, owner resolution, tenancy rules, claims/principal shape, authorization policies, response envelopes, and secret management.
 
@@ -11,7 +11,7 @@ The host application owns persistence, owner resolution, tenancy rules, claims/p
 ```powershell
 dotnet add package BrighterTools.ApiKeys
 dotnet add package BrighterTools.ApiKeys.AspNetCore
-npm install brightertools-api-keys-react
+npm install @brightertools/api-keys-react
 ```
 
 ## Repository Layout

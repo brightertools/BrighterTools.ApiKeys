@@ -1,4 +1,4 @@
-﻿# BrighterTools.ApiKeys Usage
+# BrighterTools.ApiKeys Usage
 
 Install the backend packages:
 
@@ -10,7 +10,7 @@ dotnet add package BrighterTools.ApiKeys.AspNetCore
 Install the React companion package:
 
 ```powershell
-npm install brightertools-api-keys-react
+npm install @brightertools/api-keys-react
 ```
 
 `BrighterTools.ApiKeys` owns reusable key generation, hashing, rotation, revocation, and validation orchestration. The host application owns persistence, owner resolution, tenancy, authorization, claims/principal shape, and any HTTP response envelope.

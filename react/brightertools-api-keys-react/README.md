@@ -1,4 +1,4 @@
-# brightertools-api-keys-react
+# @brightertools/api-keys-react
 
 React companion components and localization helpers for `BrighterTools.ApiKeys`.
 

@@ -6,7 +6,7 @@
   - core models, options, store abstractions, and orchestration services
 - `BrighterTools.ApiKeys.AspNetCore`
   - ASP.NET Core authentication handlers and scheme registration
-- `brightertools-api-keys-react`
+- `@brightertools/api-keys-react`
   - React management components, API adapter contracts, and localization manifests/defaults
 
 The host application should provide:
@@ -38,7 +38,7 @@ import {
   ApiKeysManager,
   createApiKeysLocalizationManifest,
   createLocalizedApiKeysUiText
-} from "brightertools-api-keys-react";
+} from "@brightertools/api-keys-react";
 
 const textOverrides = createLocalizedApiKeysUiText(t);
 

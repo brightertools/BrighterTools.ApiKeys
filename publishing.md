@@ -1,12 +1,12 @@
-﻿# BrighterTools.ApiKeys Publishing
+# BrighterTools.ApiKeys Publishing
 
-This guide is for maintainers packaging and publishing `BrighterTools.ApiKeys`, `BrighterTools.ApiKeys.AspNetCore`, and `brightertools-api-keys-react`.
+This guide is for maintainers packaging and publishing `BrighterTools.ApiKeys`, `BrighterTools.ApiKeys.AspNetCore`, and `@brightertools/api-keys-react`.
 
 ## Package Pages
 
 - NuGet: https://www.nuget.org/packages/BrighterTools.ApiKeys
 - NuGet: https://www.nuget.org/packages/BrighterTools.ApiKeys.AspNetCore
-- npm: https://www.npmjs.com/package/brightertools-api-keys-react
+- npm: https://www.npmjs.com/package/@brightertools/api-keys-react
 
 ## Local Packaging
 
