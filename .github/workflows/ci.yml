@@ -6,9 +6,10 @@ on:
       - main
       - master
   pull_request:
+  workflow_dispatch:
 
 jobs:
-  build-test:
+  build-test-pack:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,16 +21,45 @@ jobs:
         with:
           dotnet-version: 10.0.x
 
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
       - name: Restore
-        run: dotnet restore ./BrighterTools.ApiKeys.sln
+        run: dotnet restore ./BrighterTools.ApiKeys.sln --configfile ./NuGet.config
 
       - name: Build
         run: dotnet build ./BrighterTools.ApiKeys.sln --configuration Release --no-restore
 
-      - name: Test
+      - name: Test backend
         run: dotnet test ./BrighterTools.ApiKeys.sln --configuration Release --no-build --verbosity normal
+
+      - name: Install React companion dependencies
+        working-directory: ./react/brightertools-api-keys-react
+        run: npm install
+
+      - name: Test React companion package
+        working-directory: ./react/brightertools-api-keys-react
+        run: npm test
+
+      - name: Build React companion package
+        working-directory: ./react/brightertools-api-keys-react
+        run: npm run build
+
+      - name: Validate React npm package
+        working-directory: ./react/brightertools-api-keys-react
+        run: npm run pack:dry-run
 
       - name: Pack NuGet packages
         run: |
-          dotnet pack ./src/BrighterTools.ApiKeys/BrighterTools.ApiKeys.csproj --configuration Release --no-build -o ./artifacts
-          dotnet pack ./src/BrighterTools.ApiKeys.AspNetCore/BrighterTools.ApiKeys.AspNetCore.csproj --configuration Release --no-build -o ./artifacts
+          dotnet pack ./src/BrighterTools.ApiKeys/BrighterTools.ApiKeys.csproj --configuration Release --no-build --output ./artifacts/nuget --configfile ./NuGet.config
+          dotnet pack ./src/BrighterTools.ApiKeys.AspNetCore/BrighterTools.ApiKeys.AspNetCore.csproj --configuration Release --no-build --output ./artifacts/nuget --configfile ./NuGet.config
+
+      - name: Upload NuGet artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: brightertools-apikeys-nuget
+          path: ./artifacts/nuget/*
+          if-no-files-found: error

@@ -1,0 +1,51 @@
+﻿{
+  "name": "brightertools-api-keys-react",
+  "version": "1.0.0",
+  "description": "React companion API key management components, adapter contracts, and localization helpers for BrighterTools.ApiKeys.",
+  "license": "MIT-0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrighterTools/BrighterTools.ApiKeys.git",
+    "directory": "react/brightertools-api-keys-react"
+  },
+  "homepage": "https://github.com/BrighterTools/BrighterTools.ApiKeys#readme",
+  "bugs": {
+    "url": "https://github.com/BrighterTools/BrighterTools.ApiKeys/issues"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run",
+    "pack:dry-run": "npm pack --dry-run"
+  },
+  "peerDependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {
+    "@testing-library/react": "^16.3.0",
+    "@types/react": "^18.3.24",
+    "@types/react-dom": "^18.3.7",
+    "jsdom": "^26.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.8.3",
+    "vitest": "^3.2.4"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
+}

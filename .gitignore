@@ -3,3 +3,7 @@ obj/
 .vs/
 TestResults/
 artifacts/
+
+react/brightertools-api-keys-react/node_modules/
+react/brightertools-api-keys-react/dist/
+react/brightertools-api-keys-react/*.tgz

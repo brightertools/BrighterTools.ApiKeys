@@ -1,16 +1,13 @@
-# v1.0.0 - Initial Release
+﻿# BrighterTools.ApiKeys Release Notes
 
-## Summary
+## 1.0.0
 
-Initial stable release of the package.
+Initial stable release.
 
-## Included
+Included:
 
-- Core package functionality.
-- Initial public API.
-- Documentation and usage examples.
-- NuGet packaging support.
-
-## Breaking Changes
-
-- None. This is the first stable release.
+- Core API key orchestration package.
+- ASP.NET Core authentication integration package.
+- React companion API key management UI and localization helpers.
+- NuGet and npm package metadata using the MIT-0 license.
+- CI package validation and trusted-publishing workflows.
