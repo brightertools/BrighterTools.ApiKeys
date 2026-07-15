@@ -40,6 +40,7 @@ jobs:
         with:
           node-version: 24
           registry-url: https://registry.npmjs.org
+          package-manager-cache: false
 
       - name: Restore
         run: dotnet restore ./BrighterTools.ApiKeys.sln --configfile ./NuGet.config
@@ -109,3 +110,4 @@ jobs:
         if: ${{ inputs.publish_to_npm }}
         working-directory: ./react/brightertools-api-keys-react
         run: npm publish
+

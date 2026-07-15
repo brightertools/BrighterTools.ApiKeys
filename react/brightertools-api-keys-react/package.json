@@ -6,12 +6,12 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/BrighterTools/BrighterTools.ApiKeys.git",
+    "url": "git+https://github.com/brightertools/BrighterTools.ApiKeys.git",
     "directory": "react/brightertools-api-keys-react"
   },
-  "homepage": "https://github.com/BrighterTools/BrighterTools.ApiKeys#readme",
+  "homepage": "https://github.com/brightertools/BrighterTools.ApiKeys#readme",
   "bugs": {
-    "url": "https://github.com/BrighterTools/BrighterTools.ApiKeys/issues"
+    "url": "https://github.com/brightertools/BrighterTools.ApiKeys/issues"
   },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
@@ -49,3 +49,4 @@
     "access": "public"
   }
 }
+
