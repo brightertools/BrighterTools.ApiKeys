@@ -1,6 +1,6 @@
 {
   "name": "@brightertools/api-keys-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React companion API key management components, adapter contracts, and localization helpers for BrighterTools.ApiKeys.",
   "license": "MIT-0",
   "type": "module",
@@ -16,7 +16,9 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "test": "vitest run",
-    "pack:dry-run": "npm pack --dry-run"
+    "pack:dry-run": "npm pack --dry-run",
+    "prepack": "npm run build",
+    "verify:pack": "npm pack --dry-run"
   },
   "peerDependencies": {
     "react": "^18.0.0",

@@ -1,4 +1,8 @@
-﻿# BrighterTools.ApiKeys Release Notes
+## 1.0.1
+
+- Included React companion type/export updates for `@brightertools/api-keys-react`.
+- Bumped NuGet package metadata for the 1.0.1 patch release.
+# BrighterTools.ApiKeys Release Notes
 
 ## 1.0.0
 
