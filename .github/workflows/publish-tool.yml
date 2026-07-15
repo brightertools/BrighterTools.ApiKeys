@@ -42,6 +42,14 @@ jobs:
           registry-url: https://registry.npmjs.org
           package-manager-cache: false
 
+      - name: Use trusted-publishing capable npm
+        run: npm install -g npm@latest
+
+      - name: Show npm runtime
+        run: |
+          node --version
+          npm --version
+
       - name: Restore
         run: dotnet restore ./BrighterTools.ApiKeys.sln --configfile ./NuGet.config
 
@@ -109,5 +117,4 @@ jobs:
       - name: Publish React companion to npm with Trusted Publishing
         if: ${{ inputs.publish_to_npm }}
         working-directory: ./react/brightertools-api-keys-react
-        run: npm publish
-
+        run: npm publish --provenance
